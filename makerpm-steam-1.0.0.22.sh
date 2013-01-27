@@ -295,7 +295,7 @@ if [ -f ${STEAM_SPEC} ]; then
 else
     print_missing
 #    download_spec "steam.spec" ${STEAM_SPEC}
-    download_spec ${GITHUB_SPEC} ${STEAM_SPEC}
+    download_spec ${STEAM_SPEC} ${GITHUB_SPEC}
 fi
 
 echo -n "Compare SHA1 checksum of the Steam package ..."
