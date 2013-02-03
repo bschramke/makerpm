@@ -1,5 +1,6 @@
 makerpm_steam
 ====
+This script helps you to create a rpm package from the proprietary Steam package for Ubuntu 
 
 ## License
 Copyright (c) 2013, Björn Schramke (bjoern@schramke-online.de)<br>
