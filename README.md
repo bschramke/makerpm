@@ -6,8 +6,8 @@ This script helps you to create a rpm package from the proprietary Steam package
 Copyright (c) 2013, Björn Schramke (bjoern@schramke-online.de)<br>
 All rights reserved.
 
-This script is based on makerpm-amd-13.1.sh by Sebastian Siebert
-Copyright (c) 2010-2013, Sebastian Siebert (mail@sebastian-siebert.de)
+This script is based on makerpm-amd-13.1.sh by Sebastian Siebert<br>
+Copyright (c) 2010-2013, Sebastian Siebert (mail@sebastian-siebert.de)<br>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
