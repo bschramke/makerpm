@@ -50,6 +50,7 @@ PQ1VGA_TAR="PQ1VGA.tar.gz"
 PQ1VGA_ICON="PQ1.png"
 PQ1VGA_DESKTOP="PQ1VGA.desktop"
 PQ1VGA_SCRIPT="PQ1VGA"
+PQ1VGA_RPM="PQ1VGA-2.0.0-19920923.noarch.rpm"
 
 # set default configuration
 BUILDONLY="true"
@@ -349,9 +350,9 @@ if [ $? -ne 0 ]; then
 fi
 print_okay
 
-#mv -f "${RPMBUILD_RPMDIR}${STEAM_RPM}" ${STEAM_RPM}
+mv -f "${RPMBUILD_RPMDIR}${PQ1VGA_RPM}" ${PQ1VGA_RPM}
 
-#rm -Rf ${RPMBUILD_WORKINGDIR}
+rm -Rf ${RPMBUILD_WORKINGDIR}
 
 if [ "${KEEP_FILES}" = "false" ]; then
     # clean up
