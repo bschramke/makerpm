@@ -35,7 +35,7 @@ AUTHOR="Björn Schramke"
 AUTHOR_MAIL="bjoern@schramke-online.de"
 
 GITHUB_URL="https://raw.github.com/bschramke/makerpm/"
-GITHUB_SPEC="${GITHUB_URL}master/pq1vga.spec"
+GITHUB_SPEC="${GITHUB_URL}master/PQ1VGA.spec"
 GITHUB_ICON="${GITHUB_URL}master/PQ1.png"
 GITHUB_SCRIPT="${GITHUB_URL}master/PQ1VGA"
 GITHUB_DESKTOP="${GITHUB_URL}master/PQ1VGA.desktop"
@@ -45,8 +45,8 @@ RPMBUILD_SOURCEDIR=${RPMBUILD_WORKINGDIR}SOURCES/
 RPMBUILD_RPMDIR=${RPMBUILD_WORKINGDIR}RPMS/noarch/
 
 PQ1VGA_VERSION="2.0.0"
-PQ1VGA_SPEC="pq1vga.spec"
-PQ1VGA_TAR="pq1vga.tar.gz"
+PQ1VGA_SPEC="PQ1VGA.spec"
+PQ1VGA_TAR="PQ1VGA.tar.gz"
 PQ1VGA_ICON="PQ1.png"
 PQ1VGA_DESKTOP="PQ1VGA.desktop"
 PQ1VGA_SCRIPT="PQ1VGA"
@@ -133,6 +133,15 @@ download_spec(){
         exit 1
     fi
     print_okay
+}
+
+copy_source_file(){
+    cp -f $1 ${RPMBUILD_SOURCEDIR}
+    if [ $? -ne 0 ]; then
+        echo -n -e "\n   Error: Copying failed!"
+        print_failure
+        exit 1
+    fi
 }
 
 print_okay() {
@@ -312,33 +321,27 @@ if [ "${DOWNLOADONLY}" = "true" ]; then
     exit 0
 fi
 
-echo -n -e "Extracting the Steam package \"${STEAM_DEB}\" ..."
-ar vx ${STEAM_DEB} > /dev/null
-if [ $? -ne 0 ]; then
-    echo -n -e "\n   Error: Extracting failed!"
-    print_failure
-    exit 1
-fi
-print_okay
-
-# clean up
-rm debian-binary
-rm control.tar.gz
-
 check_install rpm-build
 check_workingdir
 
 echo -n -e "Copying archive with binaries to rpmbuild working directory ..."
-mv -f data.tar.gz ${STEAM_TAR}
-if [ $? -ne 0 ]; then
-    echo -n -e "\n   Error: Copying archive failed!"
-    print_failure
-    exit 1
-fi
+copy_source_file ${PQ1VGA_TAR}
+print_okay
+
+echo -n -e "Copying icon to rpmbuild working directory ..."
+copy_source_file ${PQ1VGA_ICON}
+print_okay
+
+echo -n -e "Copying start script to rpmbuild working directory ..."
+copy_source_file ${PQ1VGA_SCRIPT}
+print_okay
+
+echo -n -e "Copying .desktop-file to rpmbuild working directory ..."
+copy_source_file ${PQ1VGA_DESKTOP}
 print_okay
 
 echo -n -e "Build the RPM-Package ..."
-rpmbuild -bb --clean --rmsource --quiet ${STEAM_SPEC}
+rpmbuild -bb --clean --rmsource --quiet ${PQ1VGA_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
     print_failure
@@ -346,14 +349,16 @@ if [ $? -ne 0 ]; then
 fi
 print_okay
 
-mv -f "${RPMBUILD_RPMDIR}${STEAM_RPM}" ${STEAM_RPM}
+#mv -f "${RPMBUILD_RPMDIR}${STEAM_RPM}" ${STEAM_RPM}
 
 #rm -Rf ${RPMBUILD_WORKINGDIR}
 
 if [ "${KEEP_FILES}" = "false" ]; then
     # clean up
-    rm ${STEAM_DEB}
-    rm ${STEAM_SPEC}
+    rm ${PQ1VGA_TAR}
+    rm ${PQ1VGA_SPEC}
+    rm ${PQ1VGA_SCRIPT}
+    rm ${PQ1VGA_DESKTOP}
 fi
 
 # exit here if the option -b or --buildonly is set
