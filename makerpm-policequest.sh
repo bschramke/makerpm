@@ -78,13 +78,13 @@ PQ2_DESKTOP="PQ2.desktop"
 PQ2_SCRIPT="PQ2"
 PQ2_RPM="PQ2-2.0.0-19920923.noarch.rpm"
 
-PQ3_VERSION="2.0.0"
+PQ3_VERSION="1.0.0"
 PQ3_SPEC="PQ3.spec"
 PQ3_TAR="PQ3.tgz"
 PQ3_ICON="PQ3.png"
 PQ3_DESKTOP="PQ3.desktop"
 PQ3_SCRIPT="PQ3"
-PQ3_RPM="PQ3-2.0.0-19920923.noarch.rpm"
+PQ3_RPM="PQ3-${PQ3_VERSION}-19920923.noarch.rpm"
 
 MAKERPM_DIR="$PWD"
 
@@ -496,7 +496,7 @@ copy_source_file ${PQ3_DESKTOP}
 print_okay
 
 echo -n -e "Build the PQ1 RPM-Package ..."
-rpmbuild -bb --clean --rmsource --quiet ${PQ1_SPEC}
+rpmbuild -bb --quiet ${PQ1_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
     print_failure
@@ -506,7 +506,7 @@ print_okay
 mv -f "${RPMBUILD_RPMDIR}${PQ1_RPM}" ${PQ1_RPM}
 
 echo -n -e "Build the PQ1VGA RPM-Package ..."
-rpmbuild -bb --clean --rmsource --quiet ${PQ1VGA_SPEC}
+rpmbuild -bb --quiet ${PQ1VGA_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
     print_failure
@@ -516,7 +516,7 @@ print_okay
 mv -f "${RPMBUILD_RPMDIR}${PQ1VGA_RPM}" ${PQ1VGA_RPM}
 
 echo -n -e "Build the PQ2 RPM-Package ..."
-rpmbuild -bb --clean --rmsource --quiet ${PQ2_SPEC}
+rpmbuild -bb --quiet ${PQ2_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
     print_failure
@@ -526,7 +526,7 @@ print_okay
 mv -f "${RPMBUILD_RPMDIR}${PQ2_RPM}" ${PQ2_RPM}
 
 echo -n -e "Build the PQ3 RPM-Package ..."
-rpmbuild -bb --clean --rmsource --quiet ${PQ3_SPEC}
+rpmbuild -bb --quiet ${PQ3_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
     print_failure

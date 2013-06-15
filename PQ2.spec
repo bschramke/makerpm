@@ -1,5 +1,5 @@
 #
-# spec file for package PQ1VGA
+# spec file for package PQ2
 #
 # Copyright (c) 2013 Björn Schramke, Brandenburg an der Havel, Germany.
 # Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
@@ -13,20 +13,20 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-Name:           PQ1VGA
+Name:           PQ2
 #BuildRequires:  unzip
 BuildRequires:  update-desktop-files
 Requires:       scummvm
 Requires:       timidity
 Version:        2.0.0
 Release:        19920923
-Summary:        Police Quest: In Pursuit of the Death Angel (Adventure Game)
+Summary:        Police Quest II: The Vengeance (Adventure Game)
 License:        proprietary
 Group:          Amusements/Games/Other
 Source:         %name.tgz
 Source1:        %name
 Source2:        %name.desktop
-Source3:        PQ1.png
+Source3:        PQ2.png
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -44,54 +44,18 @@ mkdir -p $RPM_BUILD_ROOT/usr/games
 mkdir -p $RPM_BUILD_ROOT/usr/share/games/%name
 mkdir -p $RPM_BUILD_ROOT/usr/share/doc/packages/%name
 
-install -m 644 $RPM_BUILD_DIR/%name/%name/30.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/30.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/31.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/43.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/43.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/45.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/45.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/54.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/54.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/56.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/56.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/58.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/58.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/500.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/501.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/501.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.TEX $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/994.hep $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/994.scr $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/996.VOC $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/999.hep $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/999.scr $RPM_BUILD_ROOT/usr/share/games/%name
-
-#do we realy need this files?
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.000 $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.CFG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.IN~ $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.MAP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.PQ1 $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INSTALL.TXT $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INTERP.ERR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INTERP.TXT $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/MESSAGE.MAP $RPM_BUILD_ROOT/usr/share/games/%name
-
-install -m 644 $RPM_BUILD_DIR/%name/%name/READ.ME $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/README $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/VERSION $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/ticketcodes.gif $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/patch_20.txt $RPM_BUILD_ROOT/usr/share/doc/packages/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/PATCH.000 $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/PATCH.101 $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.* $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/PATCH.TXT $RPM_BUILD_ROOT/usr/share/doc/packages/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/PQ2MAP.TXT $RPM_BUILD_ROOT/usr/share/doc/packages/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/Wanted.jpg $RPM_BUILD_ROOT/usr/share/doc/packages/%name
 
 install -m 755 %{SOURCE1} $RPM_BUILD_ROOT/usr/games
 mkdir -p $RPM_BUILD_ROOT/usr/share/pixmaps/
 install -m 644 %{SOURCE3} $RPM_BUILD_ROOT/usr/share/pixmaps
 %suse_update_desktop_file -i %name Game X-SuSE-AdventureGame
-rm -f $RPM_BUILD_ROOT/usr/share/pixmaps/PQ1
+rm -f $RPM_BUILD_ROOT/usr/share/pixmaps/PQ2
 
 %files
 %defattr(-,root,root)
@@ -99,6 +63,6 @@ rm -f $RPM_BUILD_ROOT/usr/share/pixmaps/PQ1
 /usr/games/%name
 /usr/share/games/%name/
 /usr/share/applications/%name.desktop
-/usr/share/pixmaps/PQ1.png
+/usr/share/pixmaps/PQ2.png
 
 %changelog

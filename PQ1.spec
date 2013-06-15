@@ -45,6 +45,16 @@ mkdir -p $RPM_BUILD_ROOT/usr/share/games/%name
 mkdir -p $RPM_BUILD_ROOT/usr/share/doc/packages/%name
 
 install -m 644 $RPM_BUILD_DIR/%name/%name/*.OVL $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/HGC_FONT $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/LOGDIR $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/OBJECT $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/PICDIR $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/SNDDIR $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/VIEWDIR $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/VOL.0 $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/VOL.1 $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/VOL.2 $RPM_BUILD_ROOT/usr/share/games/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/WORDS.TOK $RPM_BUILD_ROOT/usr/share/games/%name
 
 install -m 755 %{SOURCE1} $RPM_BUILD_ROOT/usr/games
 mkdir -p $RPM_BUILD_ROOT/usr/share/pixmaps/
