@@ -1,5 +1,5 @@
 #
-# spec file for package PQ1VGA
+# spec file for package PQ1
 #
 # Copyright (c) 2013 Björn Schramke, Brandenburg an der Havel, Germany.
 # Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
@@ -13,7 +13,7 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-Name:           PQ1VGA
+Name:           PQ1
 #BuildRequires:  unzip
 BuildRequires:  update-desktop-files
 Requires:       scummvm

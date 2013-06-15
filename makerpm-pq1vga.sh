@@ -30,9 +30,19 @@
 
 # Version 1.0  - inital development
 
+##########################################################################################
+# Constants
 SCRIPTVERSION="0.1"
 AUTHOR="Björn Schramke"
 AUTHOR_MAIL="bjoern@schramke-online.de"
+
+INNOEXTRACT_URL='http://constexpr.org/innoextract/'
+
+# Name and store page for the GOG.com download
+GOG_SETUP_FILE='setup_police_quest1234_2.0.0.8.exe'
+GOG_URL='http://www.gog.com/gamecard/police_quest_1_2_3_4'
+
+TEMP_PATH="/tmp/pqsetup/"
 
 GITHUB_URL="https://raw.github.com/bschramke/makerpm/"
 GITHUB_SPEC="${GITHUB_URL}master/PQ1VGA.spec"
@@ -44,20 +54,79 @@ RPMBUILD_WORKINGDIR=~/rpmbuild/
 RPMBUILD_SOURCEDIR=${RPMBUILD_WORKINGDIR}SOURCES/
 RPMBUILD_RPMDIR=${RPMBUILD_WORKINGDIR}RPMS/noarch/
 
+PQ1_VERSION="2.0.0"
+PQ1_SPEC="PQ1.spec"
+PQ1_TAR="PQ1.tgz"
+PQ1_ICON="PQ1.png"
+PQ1_DESKTOP="PQ1.desktop"
+PQ1_SCRIPT="PQ1"
+PQ1_RPM="PQ1-2.0.0-19920923.noarch.rpm"
+
 PQ1VGA_VERSION="2.0.0"
 PQ1VGA_SPEC="PQ1VGA.spec"
-PQ1VGA_TAR="PQ1VGA.tar.gz"
+PQ1VGA_TAR="PQ1VGA.tgz"
 PQ1VGA_ICON="PQ1.png"
 PQ1VGA_DESKTOP="PQ1VGA.desktop"
 PQ1VGA_SCRIPT="PQ1VGA"
 PQ1VGA_RPM="PQ1VGA-2.0.0-19920923.noarch.rpm"
 
+PQ2_VERSION="2.0.0"
+PQ2_SPEC="PQ2.spec"
+PQ2_TAR="PQ2.tgz"
+PQ2_ICON="PQ2.png"
+PQ2_DESKTOP="PQ2.desktop"
+PQ2_SCRIPT="PQ2"
+PQ2_RPM="PQ2-2.0.0-19920923.noarch.rpm"
+
+PQ3_VERSION="2.0.0"
+PQ3_SPEC="PQ3.spec"
+PQ3_TAR="PQ3.tgz"
+PQ3_ICON="PQ3.png"
+PQ3_DESKTOP="PQ3.desktop"
+PQ3_SCRIPT="PQ3"
+PQ3_RPM="PQ3-2.0.0-19920923.noarch.rpm"
+
+MAKERPM_DIR="$PWD"
+
 # set default configuration
 BUILDONLY="true"
 DOWNLOADONLY="false"
-KEEP_FILES="false"
+KEEP_FILES="true"
 INSTALL="false"
 UNINSTALL="false"
+
+##########################################################################################
+# Colors
+
+disable_color() {
+        red='' ; green='' ; yellow='' ; blue='' ; pink='' ; cyan='' ; white=''
+        dim_red='' ; dim_green='' ; dim_yellow='' ; dim_blue='' ; dim_pink=''
+        dim_cyan='' ; dim_white='' ; reset=''
+}
+disable_color
+if [ -t 1 ] && [ "$(tput colors 2> /dev/null)" != -1 ] ; then
+
+               red="$(printf '\033[1;31m')"
+             green="$(printf '\033[1;32m')"
+            yellow="$(printf '\033[1;33m')"
+              blue="$(printf '\033[1;34m')"
+              pink="$(printf '\033[1;35m')"
+              cyan="$(printf '\033[1;36m')"
+             white="$(printf '\033[1;37m')"
+
+           dim_red="$(printf '\033[0;31m')"
+         dim_green="$(printf '\033[0;32m')"
+        dim_yellow="$(printf '\033[0;33m')"
+          dim_blue="$(printf '\033[0;34m')"
+          dim_pink="$(printf '\033[0;35m')"
+          dim_cyan="$(printf '\033[0;36m')"
+         dim_white="$(printf '\033[0;37m')"
+
+             reset="$(printf '\033[0m')"
+fi
+
+##########################################################################################
+# Helper functions
 
 function OutputUsage() {
     echo "Usage : $(basename $0) [options...]"
@@ -197,6 +266,9 @@ if [ $# -ne 0 ]; then
     BUILDONLY="false"
 fi
 
+##########################################################################################
+# Parse command-line arguments
+
 while [ "$#" -gt "0" ]; do
     case $1 in
         -b|--buildonly)
@@ -274,14 +346,56 @@ box_full
 
 ##################################################################################
 ## here comes the actual script contents
-################################################################################
+##################################################################################
 
+check_install innoextract
+check_install rpm-build
+check_workingdir
+
+echo -n "Check for existing GOG-Setup-Package \"${GOG_SETUP_FILE}\" ..."
+if [ -f ${GOG_SETUP_FILE} ]; then
+    print_okay
+else
+    print_missing
+    echo "cant find ${GOG_SETUP_FILE}, get it from ${green}${GOG_URL}${reset}."
+    exit 1
+fi
+
+echo -n "Extract files from GOG-Setup-Package \"${GOG_SETUP_FILE}\" ..."
+innoextract -es ${GOG_SETUP_FILE} -d ${TEMP_PATH}
+if [ $? -ne 0 ]; then
+    echo -n -e "\n   Error: Extracting GOG-Setup-Package failed!"
+    print_failure
+    exit 1
+fi
+print_okay
+
+##################################################################################
+## prepare PQ1
+##################################################################################
+echo -n "Check for existing PQ1 package \"${PQ1_TAR}\" ..."
+if [ -f ${PQ1_TAR} ]; then
+    print_okay
+else
+    print_missing
+    cd "${TEMP_PATH}/app/"
+    mv "Police Quest 1" PQ1
+    tar -czf "${MAKERPM_DIR}/${PQ1_TAR}" "PQ1"
+    cd ${MAKERPM_DIR}
+fi
+
+##################################################################################
+## prepare PQ1VGA
+##################################################################################
 echo -n "Check for existing PQ1VGA package \"${PQ1VGA_TAR}\" ..."
 if [ -f ${PQ1VGA_TAR} ]; then
     print_okay
 else
     print_missing
-    exit 1
+    cd "${TEMP_PATH}/app/"
+    mv "Police Quest 1 VGA" PQ1VGA
+    tar -czf "${MAKERPM_DIR}/${PQ1VGA_TAR}" "PQ1VGA"
+    cd ${MAKERPM_DIR}
 fi
 
 echo -n "Check for existing PQ1VGA-Spec \"${PQ1VGA_SPEC}\" ..."
@@ -316,32 +430,66 @@ else
     download_spec ${PQ1VGA_SCRIPT} ${GITHUB_SCRIPT}
 fi
 
+##################################################################################
+## prepare PQ2
+##################################################################################
+echo -n "Check for existing PQ2 package \"${PQ2_TAR}\" ..."
+if [ -f ${PQ2_TAR} ]; then
+    print_okay
+else
+    print_missing
+    cd "${TEMP_PATH}/app/"
+    mv "Police Quest 2" PQ2
+    tar -czf "${MAKERPM_DIR}/${PQ2_TAR}" "PQ2"
+    cd ${MAKERPM_DIR}
+fi
+
+##################################################################################
+## prepare PQ3
+##################################################################################
+echo -n "Check for existing PQ3 package \"${PQ3_TAR}\" ..."
+if [ -f ${PQ3_TAR} ]; then
+    print_okay
+else
+    print_missing
+    cd "${TEMP_PATH}/app/"
+    mv "Police Quest 3" PQ3
+    tar -czf "${MAKERPM_DIR}/${PQ3_TAR}" "PQ3"
+    cd ${MAKERPM_DIR}
+fi
+
+# clean up
+rm -Rf ${TEMP_PATH}
+
 # exit here if the option -d or --downloadonly is set
 if [ "${DOWNLOADONLY}" = "true" ]; then
     echo "Finish! Have a lot of fun!"
     exit 0
 fi
 
-check_install rpm-build
-check_workingdir
-
-echo -n -e "Copying archive with binaries to rpmbuild working directory ..."
+echo -n -e "Copying archives with binaries to rpmbuild working directory ..."
+copy_source_file ${PQ1_TAR}
 copy_source_file ${PQ1VGA_TAR}
+copy_source_file ${PQ2_TAR}
+copy_source_file ${PQ3_TAR}
 print_okay
 
-echo -n -e "Copying icon to rpmbuild working directory ..."
+echo -n -e "Copying icons to rpmbuild working directory ..."
+copy_source_file ${PQ1_ICON}
 copy_source_file ${PQ1VGA_ICON}
+copy_source_file ${PQ2_ICON}
+copy_source_file ${PQ3_ICON}
 print_okay
 
-echo -n -e "Copying start script to rpmbuild working directory ..."
+echo -n -e "Copying start scripts to rpmbuild working directory ..."
 copy_source_file ${PQ1VGA_SCRIPT}
 print_okay
 
-echo -n -e "Copying .desktop-file to rpmbuild working directory ..."
+echo -n -e "Copying .desktop-files to rpmbuild working directory ..."
 copy_source_file ${PQ1VGA_DESKTOP}
 print_okay
 
-echo -n -e "Build the RPM-Package ..."
+echo -n -e "Build the PQ1VGA RPM-Package ..."
 rpmbuild -bb --clean --rmsource --quiet ${PQ1VGA_SPEC}
 if [ $? -ne 0 ]; then
     echo -n -e "\n   Error: RPM-Build failed!"
