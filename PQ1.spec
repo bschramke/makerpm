@@ -44,48 +44,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/games
 mkdir -p $RPM_BUILD_ROOT/usr/share/games/%name
 mkdir -p $RPM_BUILD_ROOT/usr/share/doc/packages/%name
 
-install -m 644 $RPM_BUILD_DIR/%name/%name/30.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/30.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/31.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/43.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/43.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/45.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/45.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/54.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/54.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/56.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/56.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/58.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/58.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/500.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/501.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/501.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.HEP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.SCR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/555.TEX $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/994.hep $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/994.scr $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/996.VOC $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/999.hep $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/999.scr $RPM_BUILD_ROOT/usr/share/games/%name
-
-#do we realy need this files?
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.000 $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.CFG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.IN~ $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.MAP $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.MSG $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/RESOURCE.PQ1 $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INSTALL.TXT $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INTERP.ERR $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/INTERP.TXT $RPM_BUILD_ROOT/usr/share/games/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/MESSAGE.MAP $RPM_BUILD_ROOT/usr/share/games/%name
-
-install -m 644 $RPM_BUILD_DIR/%name/%name/READ.ME $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/README $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/VERSION $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/ticketcodes.gif $RPM_BUILD_ROOT/usr/share/doc/packages/%name
-install -m 644 $RPM_BUILD_DIR/%name/%name/patch_20.txt $RPM_BUILD_ROOT/usr/share/doc/packages/%name
+install -m 644 $RPM_BUILD_DIR/%name/%name/*.OVL $RPM_BUILD_ROOT/usr/share/games/%name
 
 install -m 755 %{SOURCE1} $RPM_BUILD_ROOT/usr/games
 mkdir -p $RPM_BUILD_ROOT/usr/share/pixmaps/

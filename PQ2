@@ -1,0 +1,58 @@
+#!/bin/sh
+
+gamepath="/usr/share/games/PQ2"
+gameid="pq2"
+
+tmplang="$LANG"
+test "$LC_MESSAGES" != "" && tmplang="$LC_MESSAGES"
+test "$LC_ALL"      != "" && tmplang="$LC_ALL"
+test "$LANGUAGE"    != "" && tmplang="$LANGUAGE"
+
+lang=`echo $tmplang|cut -d "_" -f 1`
+
+case $lang in
+  en)
+    lang=gb
+    echo $tmplang | grep en_US &>/dev/null && lang=en
+  ;;
+  de|fr|it|pt|es|se)
+  ;;
+  *)
+    lang=gb
+  ;;
+esac
+
+if [ ! -f $HOME/.scummvmrc ]; then
+  scummvmversion=`scummvm -v|grep ^ScummVM|awk '{print $2}'`
+  echo "[scummvm]" > $HOME/.scummvmrc
+  echo "versioninfo=$scummvmversion" >> $HOME/.scummvmrc
+fi
+
+grep "path=$gamepath" $HOME/.scummvmrc
+if [ $? -ne 0 ]; then
+  echo "Dies ist ein Test"
+  cat >> $HOME/.scummvmrc << EOF
+
+[$gameid]
+description=Police Quest II: The Vengeance (DOS/English)
+originalsaveload=false
+fullscreen=false
+path=$gamepath
+gameid=sci
+language=en
+sfx_volume=256
+music_volume=256
+platform=pc
+native_fb01=false
+guioptions=sndNoSpeech gameOption1 gameOption2 gameOption3 gameOption7 lang_English
+
+EOF
+fi
+
+#force language because GOG version of PQ includes only english language files
+lang=en
+
+echo "Using language: $lang"
+
+#scummvm -p$gamepath -q$lang -gadvmame2x -f $OPTIONS $gameid
+scummvm -p$gamepath -q$lang -gadvmame2x $OPTIONS $gameid

@@ -482,12 +482,28 @@ copy_source_file ${PQ3_ICON}
 print_okay
 
 echo -n -e "Copying start scripts to rpmbuild working directory ..."
+copy_source_file ${PQ1_SCRIPT}
 copy_source_file ${PQ1VGA_SCRIPT}
+copy_source_file ${PQ2_SCRIPT}
+copy_source_file ${PQ3_SCRIPT}
 print_okay
 
 echo -n -e "Copying .desktop-files to rpmbuild working directory ..."
+copy_source_file ${PQ1_DESKTOP}
 copy_source_file ${PQ1VGA_DESKTOP}
+copy_source_file ${PQ2_DESKTOP}
+copy_source_file ${PQ3_DESKTOP}
 print_okay
+
+echo -n -e "Build the PQ1 RPM-Package ..."
+rpmbuild -bb --clean --rmsource --quiet ${PQ1_SPEC}
+if [ $? -ne 0 ]; then
+    echo -n -e "\n   Error: RPM-Build failed!"
+    print_failure
+    exit 1
+fi
+print_okay
+mv -f "${RPMBUILD_RPMDIR}${PQ1_RPM}" ${PQ1_RPM}
 
 echo -n -e "Build the PQ1VGA RPM-Package ..."
 rpmbuild -bb --clean --rmsource --quiet ${PQ1VGA_SPEC}
@@ -497,17 +513,51 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 print_okay
-
 mv -f "${RPMBUILD_RPMDIR}${PQ1VGA_RPM}" ${PQ1VGA_RPM}
+
+echo -n -e "Build the PQ2 RPM-Package ..."
+rpmbuild -bb --clean --rmsource --quiet ${PQ2_SPEC}
+if [ $? -ne 0 ]; then
+    echo -n -e "\n   Error: RPM-Build failed!"
+    print_failure
+    exit 1
+fi
+print_okay
+mv -f "${RPMBUILD_RPMDIR}${PQ2_RPM}" ${PQ2_RPM}
+
+echo -n -e "Build the PQ3 RPM-Package ..."
+rpmbuild -bb --clean --rmsource --quiet ${PQ3_SPEC}
+if [ $? -ne 0 ]; then
+    echo -n -e "\n   Error: RPM-Build failed!"
+    print_failure
+    exit 1
+fi
+print_okay
+mv -f "${RPMBUILD_RPMDIR}${PQ3_RPM}" ${PQ3_RPM}
 
 rm -Rf ${RPMBUILD_WORKINGDIR}
 
 if [ "${KEEP_FILES}" = "false" ]; then
     # clean up
+    rm ${PQ1_TAR}
+    rm ${PQ1_SPEC}
+    rm ${PQ1_SCRIPT}
+    rm ${PQ1_DESKTOP}
+
     rm ${PQ1VGA_TAR}
     rm ${PQ1VGA_SPEC}
     rm ${PQ1VGA_SCRIPT}
     rm ${PQ1VGA_DESKTOP}
+
+    rm ${PQ2_TAR}
+    rm ${PQ2_SPEC}
+    rm ${PQ2_SCRIPT}
+    rm ${PQ2_DESKTOP}
+
+    rm ${PQ3_TAR}
+    rm ${PQ3_SPEC}
+    rm ${PQ3_SCRIPT}
+    rm ${PQ3_DESKTOP}
 fi
 
 # exit here if the option -b or --buildonly is set
