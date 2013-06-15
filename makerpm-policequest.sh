@@ -44,11 +44,7 @@ GOG_URL='http://www.gog.com/gamecard/police_quest_1_2_3_4'
 
 TEMP_PATH="/tmp/pqsetup/"
 
-GITHUB_URL="https://raw.github.com/bschramke/makerpm/"
-GITHUB_SPEC="${GITHUB_URL}master/PQ1VGA.spec"
-GITHUB_ICON="${GITHUB_URL}master/PQ1.png"
-GITHUB_SCRIPT="${GITHUB_URL}master/PQ1VGA"
-GITHUB_DESKTOP="${GITHUB_URL}master/PQ1VGA.desktop"
+GITHUB_URL="https://raw.github.com/bschramke/makerpm/master/"
 
 RPMBUILD_WORKINGDIR=~/rpmbuild/
 RPMBUILD_SOURCEDIR=${RPMBUILD_WORKINGDIR}SOURCES/
@@ -91,7 +87,7 @@ MAKERPM_DIR="$PWD"
 # set default configuration
 BUILDONLY="true"
 DOWNLOADONLY="false"
-KEEP_FILES="true"
+KEEP_FILES="false"
 INSTALL="false"
 UNINSTALL="false"
 
@@ -384,6 +380,38 @@ else
     cd ${MAKERPM_DIR}
 fi
 
+echo -n "Check for existing spec \"${PQ1_SPEC}\" ..."
+if [ -f ${PQ1_SPEC} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ1_SPEC} "${GITHUB_URL}/${PQ1_SPEC}"
+fi
+
+echo -n "Check for existing icon \"${PQ1_ICON}\" ..."
+if [ -f ${PQ1_ICON} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ1_ICON} "${GITHUB_URL}/${PQ1_ICON}"
+fi
+
+echo -n "Check for existing .desktop \"${PQ1_DESKTOP}\" ..."
+if [ -f ${PQ1_DESKTOP} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ1_DESKTOP} "${GITHUB_URL}/${PQ1_DESKTOP}"
+fi
+
+echo -n "Check for existing script \"${PQ1_SCRIPT}\" ..."
+if [ -f ${PQ1_SCRIPT} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ1_SCRIPT} "${GITHUB_URL}/${PQ1_SCRIPT}"
+fi
+
 ##################################################################################
 ## prepare PQ1VGA
 ##################################################################################
@@ -398,36 +426,36 @@ else
     cd ${MAKERPM_DIR}
 fi
 
-echo -n "Check for existing PQ1VGA-Spec \"${PQ1VGA_SPEC}\" ..."
+echo -n "Check for existing spec \"${PQ1VGA_SPEC}\" ..."
 if [ -f ${PQ1VGA_SPEC} ]; then
     print_okay
 else
     print_missing
-    download_spec ${PQ1VGA_SPEC} ${GITHUB_SPEC}
+    download_spec ${PQ1VGA_SPEC} "${GITHUB_URL}/${PQ1VGA_SPEC}"
 fi
 
-echo -n "Check for existing PQ1VGA-Icon \"${PQ1VGA_ICON}\" ..."
+echo -n "Check for existing icon \"${PQ1VGA_ICON}\" ..."
 if [ -f ${PQ1VGA_ICON} ]; then
     print_okay
 else
     print_missing
-    download_spec ${PQ1VGA_ICON} ${GITHUB_ICON}
+    download_spec ${PQ1VGA_ICON} "${GITHUB_URL}/${PQ1VGA_ICON}"
 fi
 
-echo -n "Check for existing PQ1VGA.desktop \"${PQ1VGA_DESKTOP}\" ..."
+echo -n "Check for existing .desktop \"${PQ1VGA_DESKTOP}\" ..."
 if [ -f ${PQ1VGA_DESKTOP} ]; then
     print_okay
 else
     print_missing
-    download_spec ${PQ1VGA_DESKTOP} ${GITHUB_DESKTOP}
+    download_spec ${PQ1VGA_DESKTOP} "${GITHUB_URL}/${PQ1_DESKTOP}"
 fi
 
-echo -n "Check for existing PQ1VGA-Script \"${PQ1VGA_SCRIPT}\" ..."
+echo -n "Check for existing script \"${PQ1VGA_SCRIPT}\" ..."
 if [ -f ${PQ1VGA_SCRIPT} ]; then
     print_okay
 else
     print_missing
-    download_spec ${PQ1VGA_SCRIPT} ${GITHUB_SCRIPT}
+    download_spec ${PQ1VGA_SCRIPT} "${GITHUB_URL}/${PQ1VGA_SCRIPT}"
 fi
 
 ##################################################################################
@@ -444,6 +472,38 @@ else
     cd ${MAKERPM_DIR}
 fi
 
+echo -n "Check for existing spec \"${PQ2_SPEC}\" ..."
+if [ -f ${PQ2_SPEC} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ2_SPEC} "${GITHUB_URL}/${PQ2_SPEC}"
+fi
+
+echo -n "Check for existing icon \"${PQ2_ICON}\" ..."
+if [ -f ${PQ2_ICON} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ2_ICON} "${GITHUB_URL}/${PQ2_ICON}"
+fi
+
+echo -n "Check for existing .desktop \"${PQ2_DESKTOP}\" ..."
+if [ -f ${PQ2_DESKTOP} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ2_DESKTOP} "${GITHUB_URL}/${PQ2_DESKTOP}"
+fi
+
+echo -n "Check for existing script \"${PQ2_SCRIPT}\" ..."
+if [ -f ${PQ2_SCRIPT} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ2_SCRIPT} "${GITHUB_URL}/${PQ2_SCRIPT}"
+fi
+
 ##################################################################################
 ## prepare PQ3
 ##################################################################################
@@ -456,6 +516,38 @@ else
     mv "Police Quest 3" PQ3
     tar -czf "${MAKERPM_DIR}/${PQ3_TAR}" "PQ3"
     cd ${MAKERPM_DIR}
+fi
+
+echo -n "Check for existing spec \"${PQ3_SPEC}\" ..."
+if [ -f ${PQ3_SPEC} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ3_SPEC} "${GITHUB_URL}/${PQ3_SPEC}"
+fi
+
+echo -n "Check for existing icon \"${PQ3_ICON}\" ..."
+if [ -f ${PQ3_ICON} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ3_ICON} "${GITHUB_URL}/${PQ3_ICON}"
+fi
+
+echo -n "Check for existing .desktop \"${PQ3_DESKTOP}\" ..."
+if [ -f ${PQ3_DESKTOP} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ3_DESKTOP} "${GITHUB_URL}/${PQ3_DESKTOP}"
+fi
+
+echo -n "Check for existing script \"${PQ3_SCRIPT}\" ..."
+if [ -f ${PQ3_SCRIPT} ]; then
+    print_okay
+else
+    print_missing
+    download_spec ${PQ3_SCRIPT} "${GITHUB_URL}/${PQ3_SCRIPT}"
 fi
 
 # clean up
